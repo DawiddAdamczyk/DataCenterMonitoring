@@ -1,0 +1,16 @@
+[
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "SampleSensor1",
+    "unit": "C",
+    "delay": 10000
+  },
+  {
+    "minRange": 100,
+    "maxRange": 200,
+    "type": "SampleSensor2",
+    "unit": "V",
+    "delay": 15000
+  }
+]

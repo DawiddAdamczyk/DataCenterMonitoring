@@ -1,0 +1,6 @@
+.docker/rabbitmq/data/*
+.docker/rabbitmq/logs/*
+
+.vs
+/.idea/
+/MongoDB/
