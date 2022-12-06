@@ -16,15 +16,15 @@
 <h1>Index</h1>
 @using (Html.BeginForm(actionName: "Reload", "SensorMessages", method: FormMethod.Post))
 {
-    <input type="submit" value="Odśwież" class="btn btn-default"/>
+    <input type="submit" value="Refresh" class="btn btn-default"/>
 }
 @using (Html.BeginForm(actionName: "DownloadCsv", "SensorMessages", method: FormMethod.Get))
 {
-    <input type="submit" value="Pobierz csv" class="btn btn-default"/>
+    <input type="submit" value="CSV download" class="btn btn-default"/>
 }
 @using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
 {
-    <input type="submit" value="Pobierz json" class="btn btn-default"/>
+    <input type="submit" value="JSON download" class="btn btn-default"/>
 }
 <div>
     <table class="table">
