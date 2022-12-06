@@ -7,31 +7,30 @@
 <div id="chart4_div"></div> 
 <script type="text/javascript">  
   
-    google.charts.load('current', {  
-        packages: ['corechart', 'bar']  
-    });  
-    google.charts.setOnLoadCallback(LoadDataTemperatureSensor);
-
-    function LoadDataTemperatureSensor() {
-        $.ajax({  
-
-            url: 'SensorChart/SensorChartTemperatureSensor',
-            dataType: "json",  
-            type: "GET",  
-            error: function(xhr, status, error) {  
-                var err = eval("(" + xhr.responseText + ")");  
-                toastr.error(err.message);  
-            },  
-            success: function(data) {  
-                SensorChartTemperatureSensor(data);
-                return false;  
-            }  
-        });  
-        return false;  
-    }  
     
 
+    google.charts.load('current', {
+        packages: ['corechart', 'bar']
+    });
 
+    google.charts.setOnLoadCallback(LoadDataTemperatureSensor);
+    function LoadDataTemperatureSensor() {
+        $.ajax({
+
+            url: 'SensorChart/SensorChartTemperatureSensor',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                SensorChartTemperatureSensor(data);
+                return false;
+            }
+        });
+        return false;
+    }
   
     
     
@@ -124,15 +123,17 @@
         var options = {
             title: 'TemperatureSensor ',
             chartArea: {
-                width: '100%'
+                width: '90%'
             },
-            colors: ['#7b1fa2'],
+            colors: ['#ff0000'],
+            backgroundColor: '#343a40',
+            height: 200,
             hAxis: {
                 title: 'Date',
                 minValue: 0
             },
             vAxis: {
-                title: 'Value [ ]'
+                title: 'Value [C]'
             }
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
@@ -152,15 +153,17 @@
         var options = {
             title: 'VoltageSensor ',
             chartArea: {
-                width: '100%'
+                width: '90%'
             },
-            colors: ['#7b1fa2'],
+            colors: ['#00ff00'],
+            backgroundColor: '#343a40',
+            height: 200,
             hAxis: {
                 title: 'Date',
                 minValue: 0
             },
             vAxis: {
-                title: 'Value [ ]'
+                title: 'Value [V]'
             }
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart2_div'));
@@ -180,15 +183,17 @@
         var options = {
             title: 'HumiditySensor ',
             chartArea: {
-                width: '100%'
+                width: '90%'
             },
-            colors: ['#7b1fa2'],
+            colors: ['#0000ff'],
+            backgroundColor: '#343a40',
+            height: 200,
             hAxis: {
                 title: 'Date',
                 minValue: 0
             },
             vAxis: {
-                title: 'Value [ ]'
+                title: 'Value [%]'
             }
         };
         var chart = new google.visualization.LineChart(document.getElementById('chart3_div'));
@@ -208,15 +213,17 @@
         var options = {  
             title: 'PowerSensor ',
             chartArea: {  
-                width: '100%'  
+                width: '90%'  
             },  
-            colors: [ '#7b1fa2'],  
+            colors: [ '#ffff00'],
+            backgroundColor: '#343a40',
+            height: 200,
             hAxis: {  
                 title: 'Date',  
                 minValue: 0  
             },  
             vAxis: {  
-                title: 'Value [ ]'  
+                title: 'Value [W]'  
             }  
         };  
         var chart = new google.visualization.LineChart(document.getElementById('chart4_div'));  
