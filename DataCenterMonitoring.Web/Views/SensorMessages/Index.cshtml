@@ -13,21 +13,25 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Messages</h1>
+<div class="container">
+    <div class="row">
 @using (Html.BeginForm(actionName: "Reload", "SensorMessages", method: FormMethod.Post))
 {
-    <input type="submit" value="Refresh" class="btn btn-default"/>
+    <input type="submit" value="Refresh" class="btn btn-light col-xs-4"/>
 }
 @using (Html.BeginForm(actionName: "DownloadCsv", "SensorMessages", method: FormMethod.Get))
 {
-    <input type="submit" value="CSV download" class="btn btn-default"/>
+            <input type="submit" value="CSV download" class="btn btn-light col-xs-4" />
 }
 @using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
 {
-    <input type="submit" value="JSON download" class="btn btn-default"/>
+            <input type="submit" value="JSON download" class="btn btn-light col-xs-4" />
 }
+    </div>
+</div>
 <div>
-    <table class="table">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>
@@ -83,12 +87,12 @@
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
-   class="btn btn-default @prevDisabled">
+   class="btn btn-light @prevDisabled">
     Previous
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
-   class="btn btn-default @nextDisabled">
+   class="btn btn-light @nextDisabled">
     Next
 </a>
