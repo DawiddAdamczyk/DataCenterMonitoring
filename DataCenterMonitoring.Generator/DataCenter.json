@@ -2,15 +2,225 @@
   {
     "minRange": 10,
     "maxRange": 30,
-    "type": "SampleSensor1",
+    "type": "TemperatureSensor",
     "unit": "C",
     "delay": 10000
   },
   {
-    "minRange": 100,
-    "maxRange": 200,
-    "type": "SampleSensor2",
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 12000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 140000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 16000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 18000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 20000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 22000
+  },
+  {
+    "minRange": 10,
+    "maxRange": 30,
+    "type": "TemperatureSensor",
+    "unit": "C",
+    "delay": 24000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
     "unit": "V",
     "delay": 15000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 16000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 17000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 18000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 19000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 20000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 21000
+  },
+  {
+    "minRange": 200,
+    "maxRange": 250,
+    "type": "VoltageSensor",
+    "unit": "V",
+    "delay": 22000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 9000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 10000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 11000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 12000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 13000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 14000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 15000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 100,
+    "type": "HumiditySensor",
+    "unit": "%",
+    "delay": 16000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 15000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 16000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 17000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 18000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 19000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 21000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 22000
+  },
+  {
+    "minRange": 0,
+    "maxRange": 500,
+    "type": "PowerSensor",
+    "unit": "W",
+    "delay": 23000
   }
 ]

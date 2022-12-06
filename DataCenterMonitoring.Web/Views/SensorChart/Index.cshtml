@@ -10,12 +10,12 @@
     google.charts.load('current', {  
         packages: ['corechart', 'bar']  
     });  
-    google.charts.setOnLoadCallback(LoadDataSampleSensor1);
+    google.charts.setOnLoadCallback(LoadDataTemperatureSensor);
 
-    function LoadDataSampleSensor1() {
+    function LoadDataTemperatureSensor() {
         $.ajax({  
 
-            url: 'SensorChart/SensorChartSampleSensor1',
+            url: 'SensorChart/SensorChartTemperatureSensor',
             dataType: "json",  
             type: "GET",  
             error: function(xhr, status, error) {  
@@ -23,7 +23,7 @@
                 toastr.error(err.message);  
             },  
             success: function(data) {  
-                SensorChartSampleSensor1(data);
+                SensorChartTemperatureSensor(data);
                 return false;  
             }  
         });  
@@ -33,7 +33,7 @@
 
 
   
-    function SensorChartSampleSensor1(data) {
+    function SensorChartTemperatureSensor(data) {
         var dataArray = [  
             ['Date', 'Value']  
         ];  
@@ -42,7 +42,7 @@
         });  
         var data = google.visualization.arrayToDataTable(dataArray);  
         var options = {  
-            title: 'Sensor SampleSensor1 ',
+            title: 'TemperatureSensor ',
             chartArea: {  
                 width: '100%'  
             },  
@@ -61,6 +61,156 @@
         return false;  
     }  
     
+    google.charts.setOnLoadCallback(LoadDataVoltageSensor);
+    function LoadDataVoltageSensor() {
+        $.ajax({
+
+            url: 'SensorChart/SensorChartVoltageSensor',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                SensorChartVoltageSensor(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+
+
+
+    function SensorChartVoltageSensor(data) {
+        var dataArray = [
+            ['Date', 'Value']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.date, item.value]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'VoltageSensor ',
+            chartArea: {
+                width: '100%'
+            },
+            colors: ['#7b1fa2'],
+            hAxis: {
+                title: 'Date',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Value [ ]'
+            }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        return false;
+    }
+
+    google.charts.setOnLoadCallback(LoadDataHumiditySensor);
+    function LoadDataHumiditySensor() {
+        $.ajax({
+
+            url: 'SensorChart/SensorChartHumiditySensor',
+            dataType: "json",
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                SensorChartHumiditySensor(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+
+
+
+    function SensorChartHumiditySensor(data) {
+        var dataArray = [
+            ['Date', 'Value']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.date, item.value]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var options = {
+            title: 'HumiditySensor ',
+            chartArea: {
+                width: '100%'
+            },
+            colors: ['#7b1fa2'],
+            hAxis: {
+                title: 'Date',
+                minValue: 0
+            },
+            vAxis: {
+                title: 'Value [ ]'
+            }
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        return false;
+    }
+
+    google.charts.setOnLoadCallback(LoadDataPowerSensor);
+    function LoadDataPowerSensor() {
+        $.ajax({  
+
+            url: 'SensorChart/SensorChartPowerSensor',
+            dataType: "json",  
+            type: "GET",  
+            error: function(xhr, status, error) {  
+                var err = eval("(" + xhr.responseText + ")");  
+                toastr.error(err.message);  
+            },  
+            success: function(data) {  
+                SensorChartPowerSensor(data);
+                return false;  
+            }  
+        });  
+        return false;  
+    }  
+    
+
+
+  
+    function SensorChartPowerSensor(data) {
+        var dataArray = [  
+            ['Date', 'Value']  
+        ];  
+        $.each(data, function(i, item) {  
+            dataArray.push([item.date, item.value]);  
+        });  
+        var data = google.visualization.arrayToDataTable(dataArray);  
+        var options = {  
+            title: 'PowerSensor ',
+            chartArea: {  
+                width: '100%'  
+            },  
+            colors: [ '#7b1fa2'],  
+            hAxis: {  
+                title: 'Date',  
+                minValue: 0  
+            },  
+            vAxis: {  
+                title: 'Value [ ]'  
+            }  
+        };  
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));  
+
+        chart.draw(data, options);  
+        return false;  
+    }  
+
 
 
 </script>

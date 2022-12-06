@@ -23,17 +23,68 @@ namespace DataCenterMonitoring.Web.Controllers
         public JsonResult SensorChartSampleSensor1()
         {
             var sensorList = _context.GetAllSensors();
-            var SampleSensor1List = new List<Sensor>();
+            var TemperatureSensorList = new List<Sensor>();
 
 
             foreach (var s in sensorList)
             {
-                if (s.SensorType == "SampleSensor1")
+                if (s.SensorType == "TemperatureSensor")
                 {
-                    SampleSensor1List.Add(s);
+                    TemperatureSensorList.Add(s);
                 }
             }
-            return Json(SampleSensor1List);
+            return Json(TemperatureSensorList);
+        }
+
+        [HttpGet]
+        public JsonResult SensorChartVoltageSensor()
+        {
+            var sensorList = _context.GetAllSensors();
+            var VoltageSensorList = new List<Sensor>();
+
+
+            foreach (var s in sensorList)
+            {
+                if (s.SensorType == "VoltageSensor")
+                {
+                    VoltageSensorList.Add(s);
+                }
+            }
+            return Json(VoltageSensorList);
+        }
+
+        [HttpGet]
+        public JsonResult SensorChartHumiditySensor()
+        {
+            var sensorList = _context.GetAllSensors();
+            var HumiditySensorList = new List<Sensor>();
+
+
+            foreach (var s in sensorList)
+            {
+                if (s.SensorType == "HumiditySensor")
+                {
+                    HumiditySensorList.Add(s);
+                }
+            }
+            return Json(HumiditySensorList);
+        }
+
+        [HttpGet]
+        public JsonResult SensorChartPowerSensor()
+        {
+            var sensorList = _context.GetAllSensors();
+            var PowerSensorList = new List<Sensor>();
+
+
+            foreach (var s in sensorList)
+            {
+                if (s.SensorType == "PowerSensor")
+                {
+                    PowerSensorList.Add(s);
+                }
+            }
+            return Json(PowerSensorList);
         }
     }
 }
