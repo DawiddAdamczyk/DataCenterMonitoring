@@ -1,7 +1,8 @@
 ﻿<title>@ViewData["Title"] - Sensor Chart</title>  
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>  
   
-<div id="chart_div"></div>  
+<div id="chart_div"></div>
+<div id="chart1_div"></div>
 <div id="chart2_div"></div>  
 <div id="chart3_div"></div>  
 <div id="chart4_div"></div> 
@@ -34,9 +35,6 @@
   
     
     
-    google.charts.load('current', {
-        packages: ['corechart', 'bar']
-    });
 
     google.charts.setOnLoadCallback(LoadDataVoltageSensor);
     function LoadDataVoltageSensor() {
@@ -62,9 +60,6 @@
 
     
 
-    google.charts.load('current', {
-        packages: ['corechart', 'bar']
-    });
 
     google.charts.setOnLoadCallback(LoadDataHumiditySensor);
     function LoadDataHumiditySensor() {
@@ -87,10 +82,6 @@
 
 
 
-
-    google.charts.load('current', {
-        packages: ['corechart', 'bar']
-    });
 
     google.charts.setOnLoadCallback(LoadDataPowerSensor);
     function LoadDataPowerSensor() {
@@ -123,10 +114,9 @@
         var options = {
             title: 'TemperatureSensor ',
             chartArea: {
-                width: '90%'
+                width: '50%'
             },
             colors: ['#ff0000'],
-            backgroundColor: '#343a40',
             height: 200,
             hAxis: {
                 title: 'Date',
@@ -136,7 +126,7 @@
                 title: 'Value [C]'
             }
         };
-        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.LineChart(document.getElementById('chart1_div'));
 
         chart.draw(data, options);
         return false;
@@ -153,10 +143,9 @@
         var options = {
             title: 'VoltageSensor ',
             chartArea: {
-                width: '90%'
+                width: '50%'
             },
             colors: ['#00ff00'],
-            backgroundColor: '#343a40',
             height: 200,
             hAxis: {
                 title: 'Date',
@@ -183,11 +172,11 @@
         var options = {
             title: 'HumiditySensor ',
             chartArea: {
-                width: '90%'
+                width: '50%'
             },
             colors: ['#0000ff'],
             backgroundColor: '#343a40',
-            height: 200,
+            height: 100,
             hAxis: {
                 title: 'Date',
                 minValue: 0
@@ -213,17 +202,17 @@
         var options = {  
             title: 'PowerSensor ',
             chartArea: {  
-                width: '90%'  
+                width: '50%'  
             },  
             colors: [ '#ffff00'],
             backgroundColor: '#343a40',
-            height: 200,
+            height: 100,
             hAxis: {  
-                title: 'Date',  
+                title: 'Date',
                 minValue: 0  
             },  
             vAxis: {  
-                title: 'Value [W]'  
+                title: 'Value [W]'
             }  
         };  
         var chart = new google.visualization.LineChart(document.getElementById('chart4_div'));  

@@ -18,15 +18,15 @@
     <div class="row">
 @using (Html.BeginForm(actionName: "Reload", "SensorMessages", method: FormMethod.Post))
 {
-    <input type="submit" value="Refresh" class="btn btn-light col-4"/>
+    <input type="submit" value="Refresh" class="btn btn-light col-xs-4"/>
 }
 @using (Html.BeginForm(actionName: "DownloadCsv", "SensorMessages", method: FormMethod.Get))
 {
-            <input type="submit" value="CSV download" class="btn btn-light col-4" />
+            <input type="submit" value="CSV download" class="btn btn-light col-xs-4" />
 }
 @using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
 {
-            <input type="submit" value="JSON download" class="btn btn-light col-4" />
+            <input type="submit" value="JSON download" class="btn btn-light col-xs-4" />
 }
     </div>
 </div>
