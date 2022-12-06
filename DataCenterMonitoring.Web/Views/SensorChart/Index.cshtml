@@ -10,12 +10,12 @@
     google.charts.load('current', {  
         packages: ['corechart', 'bar']  
     });  
-    google.charts.setOnLoadCallback(LoadDataTemperature);  
+    google.charts.setOnLoadCallback(LoadDataSampleSensor1);
 
-    function LoadDataTemperature() {  
+    function LoadDataSampleSensor1() {
         $.ajax({  
 
-            url: 'SensorChart/SensorChartTemperature',  
+            url: 'SensorChart/SensorChartSampleSensor1',
             dataType: "json",  
             type: "GET",  
             error: function(xhr, status, error) {  
@@ -23,81 +23,17 @@
                 toastr.error(err.message);  
             },  
             success: function(data) {  
-                SensorChartTemperature(data);  
+                SensorChartSampleSensor1(data);
                 return false;  
             }  
         });  
         return false;  
     }  
-    google.charts.load('current', {  
-            packages: ['corechart', 'bar']  
-        });  
-    google.charts.setOnLoadCallback(LoadDataVoltage);  
-      
-        function LoadDataVoltage() {  
-            $.ajax({  
-      
-                url: 'SensorChart/SensorChartVoltage',  
-                dataType: "json",  
-                type: "GET",  
-                error: function(xhr, status, error) {  
-                    var err = eval("(" + xhr.responseText + ")");  
-                    toastr.error(err.message);  
-                },  
-                success: function(data) {  
-                    SensorChartVoltage(data);  
-                    return false;  
-                }  
-            });  
-            return false;  
-        }
-    google.charts.load('current', {  
-            packages: ['corechart', 'bar']  
-        });  
-        google.charts.setOnLoadCallback(LoadDataHygrometer);  
     
-        function LoadDataHygrometer() {  
-            $.ajax({  
-    
-                url: 'SensorChart/SensorChartHygrometer',  
-                dataType: "json",  
-                type: "GET",  
-                error: function(xhr, status, error) {  
-                    var err = eval("(" + xhr.responseText + ")");  
-                    toastr.error(err.message);  
-                },  
-                success: function(data) {  
-                    SensorChartHygrometer(data);  
-                    return false;  
-                }  
-            });  
-            return false;  
-        }
-    google.charts.load('current', {  
-                packages: ['corechart', 'bar']  
-            });  
-            google.charts.setOnLoadCallback(LoadDataCarbonMonoxide);  
-        
-        function LoadDataCarbonMonoxide() {  
-            $.ajax({  
-    
-                url: 'SensorChart/SensorChartCarbonMonoxide',  
-                dataType: "json",  
-                type: "GET",  
-                error: function(xhr, status, error) {  
-                    var err = eval("(" + xhr.responseText + ")");  
-                    toastr.error(err.message);  
-                },  
-                success: function(data) {  
-                    SensorChartCarbonMonoxide(data);  
-                    return false;  
-                }  
-            });  
-            return false;  
-        }  
-    
+
+
   
-    function SensorChartTemperature(data) {  
+    function SensorChartSampleSensor1(data) {
         var dataArray = [  
             ['Date', 'Value']  
         ];  
@@ -106,7 +42,7 @@
         });  
         var data = google.visualization.arrayToDataTable(dataArray);  
         var options = {  
-            title: 'Sensor Temperature ',  
+            title: 'Sensor SampleSensor1 ',
             chartArea: {  
                 width: '50%'  
             },  
@@ -116,7 +52,7 @@
                 minValue: 0  
             },  
             vAxis: {  
-                title: 'Value [C]'  
+                title: 'Value [ ]'  
             }  
         };  
         var chart = new google.visualization.LineChart(document.getElementById('chart_div'));  
@@ -124,85 +60,5 @@
         chart.draw(data, options);  
         return false;  
     }  
-    function SensorChartVoltage(data) {  
-            var dataArray = [  
-                ['Date', 'Value']  
-            ];  
-            $.each(data, function(i, item) {  
-                dataArray.push([item.date, item.value]);  
-            });  
-            var data = google.visualization.arrayToDataTable(dataArray);  
-            var options = {  
-                title: 'Sensor Voltage ',  
-                chartArea: {  
-                    width: '50%'  
-                },  
-                colors: ['#b0120a'],  
-                hAxis: {  
-                    title: 'Date',  
-                    minValue: 0  
-                },  
-                vAxis: {  
-                    title: 'Value [V]'  
-                }  
-            };  
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div_2'));  
-      
-            chart.draw(data, options);  
-            return false;  
-        }  
-        function SensorChartHygrometer(data) {  
-            var dataArray = [  
-                ['Date', 'Value']  
-            ];  
-            $.each(data, function(i, item) {  
-                dataArray.push([item.date, item.value]);  
-            });  
-            var data = google.visualization.arrayToDataTable(dataArray);  
-            var options = {  
-                title: 'Sensor Hygrometer',  
-                chartArea: {  
-                    width: '50%'  
-                },  
-                colors: ['#ffab91'],  
-                hAxis: {  
-                    title: 'Date',  
-                    minValue: 0  
-                },  
-                vAxis: {  
-                    title: 'Value [%]'  
-                }  
-            };  
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div_3'));  
-      
-            chart.draw(data, options);  
-            return false;  
-        } 
-        function SensorChartCarbonMonoxide(data) {  
-            var dataArray = [  
-                ['Date', 'Value']  
-            ];  
-            $.each(data, function(i, item) {  
-                dataArray.push([item.date, item.value]);  
-            });  
-            var data = google.visualization.arrayToDataTable(dataArray);  
-            var options = {  
-                title: 'Sensor CarbonMonoxide ',  
-                chartArea: {  
-                    width: '50%'  
-                },  
-                colors: ['#d95f00'],  
-                hAxis: {  
-                    title: 'Date',  
-                    minValue: 0  
-                },  
-                vAxis: {  
-                    title: 'Value [%]'  
-                }  
-            };  
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div_4'));  
-      
-            chart.draw(data, options);  
-            return false;  
-        } 
+    
 </script>
