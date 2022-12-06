@@ -15,30 +15,7 @@ namespace DataCenterLibrary.Repository
             var database = client.GetDatabase(settings.DatabaseName);
 
             _sensors = database.GetCollection<Sensor>(settings.CollectionName);
-            
-            // var sensors = new List<Sensor>
-            // {
-            //     new(1, "Temperature", 22, "C",DateTime.Now),
-            //     new(1, "Temperature", 23, "C",DateTime.Now),
-            //     new(1,"Temperature",21,"C",DateTime.Now),
-            //     new(4,"Temperature",20,"C",DateTime.Now),
-            //     new(5,"Temperature",21,"C",DateTime.Now),
-            //     new(6,"Voltage",212,"V",DateTime.Now),
-            //     new(7,"Temperature",22,"C",DateTime.Now),
-            //     new(8,"Temperature",19,"C",DateTime.Now),
-            //     new(9,"Temperature",21,"C",DateTime.Now),
-            //     new(10,"Temperature",20,"C",DateTime.Now),
-            //     new(10,"Temperature",21,"C",DateTime.Now),
-            //     new(11,"Temperature",22,"C",DateTime.Now),
-            //     new(11,"Voltage",213,"V",DateTime.Now),
-            //     new(14,"Voltage",200,"V",DateTime.Now),
-            // };
-            //
-            // foreach (var var in sensors)
-            // {
-            //     _sensors.InsertOne(var);
-            // }
-            
+           
         }
 
         public List<Sensor> GetAllSensors()
