@@ -9,7 +9,7 @@
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "ServerRoomMonitoring.Api": {
+    "DataCenterMonitoring.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",

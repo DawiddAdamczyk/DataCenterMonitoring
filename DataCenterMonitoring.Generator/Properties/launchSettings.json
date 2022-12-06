@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ServerRoomMonitoringGenerator": {
+    "DataCenterMonitoringGenerator": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

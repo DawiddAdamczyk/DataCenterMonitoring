@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "ServerRoomMonitoring.Web": {
+    "DataCenterMonitoring.Web": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": false,
