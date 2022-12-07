@@ -24,9 +24,10 @@ namespace DataCenterMonitoring.Web.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string sortOrder, int? pageNumber)
+        public IActionResult Index(string sortOrder, int? pageNumber, string typeFiltered)
         {
             ViewData["CurrentSort"] = sortOrder;
+            ViewData["CurrentFilter"] = typeFiltered;
             ViewData["IdSortParm"] = sortOrder == "Id" ? "id_desc" : "Id";
             ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
             ViewData["ValueSortParm"] = sortOrder == "Value" ? "value_desc" : "Value";
@@ -34,6 +35,13 @@ namespace DataCenterMonitoring.Web.Controllers
             ViewData["DateSortParm"] = sortOrder == "Date" ? "date_desc" : "Date";
             var sensors = from s in _context.GetAllSensors()
                           select s;
+
+            if(typeFiltered!= null) 
+            {
+                sensors = sensors.Where(s => s.SensorType == typeFiltered);
+            }
+
+
             switch (sortOrder)
             {
                 case "Id":
@@ -81,13 +89,15 @@ namespace DataCenterMonitoring.Web.Controllers
         {
             return RedirectToAction("Index"); ;
         }
-        public IActionResult DownloadCsv()
+
+        
+        public IActionResult DownloadCsv(string sortOrder, string typeFiltered)
         {
-            var csvString = GenerateCSVString();
+            var csvString = GenerateCSVString(sortOrder, typeFiltered);
             var fileName = "CsvData " + DateTime.Now.ToString() + ".csv";
             return File(new System.Text.UTF8Encoding().GetBytes(csvString), "text/csv", fileName);
         }
-        private string GenerateCSVString()
+        private string GenerateCSVString(string sortOrder, string typeFiltered)
         {
             var sensors = from s in _context.GetAllSensors()
                           select s;
@@ -99,10 +109,13 @@ namespace DataCenterMonitoring.Web.Controllers
             sb.Append("Date");
             sb.AppendLine();
 
-            //sensors = sensors.OrderBy(s => s.Value);
-            //sb.Append(ViewData["CurrentSort"]);
-            //sb.AppendLine();
-            switch (ViewData["CurrentSort"])
+
+            if (typeFiltered != null)
+            {
+                sensors = sensors.Where(s => s.SensorType == typeFiltered);
+            }
+
+            switch (sortOrder)
             {
                 case "Id":
                     sensors = sensors.OrderBy(s => s.Id);
@@ -154,11 +167,54 @@ namespace DataCenterMonitoring.Web.Controllers
             }
             return sb.ToString();
         }
-        public IActionResult DownloadJson()
+
+        public IActionResult DownloadJson(string sortOrder, string typeFiltered)
         {
             var sensors = from s in _context.GetAllSensors()
                           select s;
-            //sensors = sensors.OrderBy(s => s.Value);
+
+            if (typeFiltered != null)
+            {
+                sensors = sensors.Where(s => s.SensorType == typeFiltered);
+            }
+
+            switch (sortOrder)
+            {
+                case "Id":
+                    sensors = sensors.OrderBy(s => s.Id);
+                    break;
+                case "id_desc":
+                    sensors = sensors.OrderByDescending(s => s.Id);
+                    break;
+                case "Type":
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+                case "type_desc":
+                    sensors = sensors.OrderByDescending(s => s.SensorType);
+                    break;
+                case "Value":
+                    sensors = sensors.OrderBy(s => s.Value);
+                    break;
+                case "value_desc":
+                    sensors = sensors.OrderByDescending(s => s.Value);
+                    break;
+                case "Unit":
+                    sensors = sensors.OrderBy(s => s.Unit);
+                    break;
+                case "unit_desc":
+                    sensors = sensors.OrderByDescending(s => s.Unit);
+                    break;
+                case "Date":
+                    sensors = sensors.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    sensors = sensors.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+            }
+
             var jsonstr = System.Text.Json.JsonSerializer.Serialize(sensors);
             byte[] byteArray = System.Text.ASCIIEncoding.ASCII.GetBytes(jsonstr);
 

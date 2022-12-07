@@ -14,40 +14,75 @@
 }
 
 <h1>Messages</h1>
-<div class="container">
-    <div class="row">
-@using (Html.BeginForm(actionName: "Reload", "SensorMessages", method: FormMethod.Post))
-{
-    <input type="submit" value="Refresh" class="btn btn-light col-xs-4"/>
-}
-@using (Html.BeginForm(actionName: "DownloadCsv", "SensorMessages", method: FormMethod.Get))
-{
-            <input type="submit" value="CSV download" class="btn btn-light col-xs-4" />
-}
-@using (Html.BeginForm(actionName: "DownloadJson", "SensorMessages", method: FormMethod.Get))
-{
-            <input type="submit" value="JSON download" class="btn btn-light col-xs-4" />
-}
-    </div>
-</div>
+
+<a asp-action="DownloadCsv"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="@ViewData["CurrentFilter"]"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    Download CSV
+</a>
+<a asp-action="DownloadJSON"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="@ViewData["CurrentFilter"]"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    DownloadJSON
+</a>
+</br>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    All
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="PowerSensor"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    Power
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="TemperatureSensor"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    Temperature
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="HumiditySensor"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    Humidity
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="VoltageSensor"
+   asp-route-pageNumber="@(Model.PageIndex)"
+   class="btn btn-light">
+    Voltage
+</a>
+
 <div>
     <table class="table table-dark table-striped">
         <thead>
             <tr>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["IdSortParm"]">Id</a>
+                    <a asp-action="Index" asp-route-typeFiltered="@ViewData["CurrentFilter"]" asp-route-sortOrder="@ViewData["IdSortParm"]">Id</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["TypeSortParm"]">SensorType</a>
+                    <a asp-action="Index" asp-route-typeFiltered="@ViewData["CurrentFilter"]" asp-route-sortOrder="@ViewData["TypeSortParm"]">SensorType</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["ValueSortParm"]">Value</a>
+                    <a asp-action="Index" asp-route-typeFiltered="@ViewData["CurrentFilter"]" asp-route-sortOrder="@ViewData["ValueSortParm"]">Value</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["UnitSortParm"]">Unit</a>
+                    <a asp-action="Index" asp-route-typeFiltered="@ViewData["CurrentFilter"]" asp-route-sortOrder="@ViewData["UnitSortParm"]">Unit</a>
                 </th>
                 <th>
-                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
+                    <a asp-action="Index" asp-route-typeFiltered="@ViewData["CurrentFilter"]" asp-route-sortOrder="@ViewData["DateSortParm"]">Date</a>
                 </th>
                 <th></th>
             </tr>
@@ -86,12 +121,14 @@
 
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="@ViewData["CurrentFilter"]"
    asp-route-pageNumber="@(Model.PageIndex - 1)"
    class="btn btn-light @prevDisabled">
     Previous
 </a>
 <a asp-action="Index"
    asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-typeFiltered="@ViewData["CurrentFilter"]"
    asp-route-pageNumber="@(Model.PageIndex + 1)"
    class="btn btn-light @nextDisabled">
     Next
