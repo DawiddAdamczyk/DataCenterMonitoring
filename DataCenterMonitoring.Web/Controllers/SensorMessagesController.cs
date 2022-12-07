@@ -10,6 +10,8 @@ using DataCenterMonitoring.Web.Paging;
 using System.Linq;
 using System.Text;
 using System;
+using System.Diagnostics.Eventing.Reader;
+using Microsoft.AspNetCore.Http;
 
 namespace DataCenterMonitoring.Web.Controllers
 {
@@ -24,6 +26,7 @@ namespace DataCenterMonitoring.Web.Controllers
 
         public IActionResult Index(string sortOrder, int? pageNumber)
         {
+            ViewData["CurrentSort"] = sortOrder;
             ViewData["IdSortParm"] = sortOrder == "Id" ? "id_desc" : "Id";
             ViewData["TypeSortParm"] = sortOrder == "Type" ? "type_desc" : "Type";
             ViewData["ValueSortParm"] = sortOrder == "Value" ? "value_desc" : "Value";
@@ -68,6 +71,8 @@ namespace DataCenterMonitoring.Web.Controllers
                     break;
             }
             int pageSize = 10;
+
+            //IHttpContextAccessor.Session["Sort"] = sortOrder;
             return View(PaginatedList<Sensor>.Create(sensors, pageNumber ?? 1, pageSize));
         }
 
@@ -84,7 +89,8 @@ namespace DataCenterMonitoring.Web.Controllers
         }
         private string GenerateCSVString()
         {
-            var sensors = _context.GetAllSensors();
+            var sensors = from s in _context.GetAllSensors()
+                          select s;
             StringBuilder sb = new StringBuilder();
             sb.Append("Id,");
             sb.Append("SensorType,");
@@ -92,6 +98,49 @@ namespace DataCenterMonitoring.Web.Controllers
             sb.Append("Unit,");
             sb.Append("Date");
             sb.AppendLine();
+
+            //sensors = sensors.OrderBy(s => s.Value);
+            //sb.Append(ViewData["CurrentSort"]);
+            //sb.AppendLine();
+            switch (ViewData["CurrentSort"])
+            {
+                case "Id":
+                    sensors = sensors.OrderBy(s => s.Id);
+                    break;
+                case "id_desc":
+                    sensors = sensors.OrderByDescending(s => s.Id);
+                    break;
+                case "Type":
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+                case "type_desc":
+                    sensors = sensors.OrderByDescending(s => s.SensorType);
+                    break;
+                case "Value":
+                    sensors = sensors.OrderBy(s => s.Value);
+                    break;
+                case "value_desc":
+                    sensors = sensors.OrderByDescending(s => s.Value);
+                    break;
+                case "Unit":
+                    sensors = sensors.OrderBy(s => s.Unit);
+                    break;
+                case "unit_desc":
+                    sensors = sensors.OrderByDescending(s => s.Unit);
+                    break;
+                case "Date":
+                    sensors = sensors.OrderBy(s => s.Date);
+                    break;
+                case "date_desc":
+                    sensors = sensors.OrderByDescending(s => s.Date);
+                    break;
+                default:
+                    sensors = sensors.OrderBy(s => s.SensorType);
+                    break;
+            }
+
+            
+
             foreach (var sensor in sensors)
             {
                 sb.Append(sensor.Id);
@@ -107,7 +156,9 @@ namespace DataCenterMonitoring.Web.Controllers
         }
         public IActionResult DownloadJson()
         {
-            var sensors = _context.GetAllSensors();
+            var sensors = from s in _context.GetAllSensors()
+                          select s;
+            //sensors = sensors.OrderBy(s => s.Value);
             var jsonstr = System.Text.Json.JsonSerializer.Serialize(sensors);
             byte[] byteArray = System.Text.ASCIIEncoding.ASCII.GetBytes(jsonstr);
 

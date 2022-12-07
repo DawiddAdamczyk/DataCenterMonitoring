@@ -20,7 +20,7 @@ namespace DataCenterMonitoring.Web.Controllers
         }
 
         [HttpGet]
-        public JsonResult SensorChartSampleSensor1()
+        public JsonResult SensorChartTemperatureSensor()
         {
             var sensorList = _context.GetAllSensors();
             var TemperatureSensorList = new List<Sensor>();

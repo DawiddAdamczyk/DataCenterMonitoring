@@ -33,7 +33,9 @@ namespace DataCenterMonitoring.Web
             services.AddSingleton<ISensorsDatabaseSettings>(sp => sp.GetRequiredService<IOptions<SensorsDatabaseSettings>>().Value);
 
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
 
+            services.AddSession();
             // Configure DI
             services.AddConfig(Configuration);
 
@@ -59,8 +61,8 @@ namespace DataCenterMonitoring.Web
 
             app.UseRouting();
 
+            app.UseSession();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
